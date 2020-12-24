@@ -28,7 +28,7 @@ def authenticate():
         logging.info("Got Twitch API access token.")
         return access_token
     else:
-        logging.error("Could not authenticate Twicth API. (STATUS_CODE: {})".format(res.status_code))
+        logging.error("Could not authenticate Twitch API. (STATUS_CODE: {})".format(res.status_code))
         return None
 
 
@@ -38,7 +38,8 @@ def check_twitch_start():
     while True:
 
         params = {
-            'query': search_query
+            'query': search_query,
+            'live_only': 'true'
         }
         headers = {
             'Client-ID': client_id,
@@ -54,6 +55,6 @@ def check_twitch_start():
             if len(data) == 0:
                 logging.info("There are not Twitch channel info.")
             else:
-                send_tweet(TWEET_TPL + title)
+                send_tweet(TWEET_TPL)
         else:
             logging.error("Could not get Twitch channel info. (STATUS_CODE: {})".format(str(res.status_code)))
