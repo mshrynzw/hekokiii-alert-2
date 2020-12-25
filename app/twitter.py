@@ -14,10 +14,10 @@ CS = os.environ["CONSUMER_SECRET"]
 AT = os.environ["ACCESS_TOKEN"]
 ATS = os.environ["ACCESS_TOKEN_SECRET"]
 # Twitter検索の設定
-keyword = os.environ["TWEET_SEARCH_EXCLUSION"]
-from_user = os.environ["TWEET_SEARCH_FROM_USER"]
+keyword = os.environ["TWITTER_SEARCH_EXCLUSION"]
+from_user = os.environ["TWITTER_SEARCH_FROM_USER"]
 # ツイートのテンプレート
-strTmp = os.environ["TWEET_TPL_INFO"]
+strTmp = os.environ["TWITTER_TPL_INFO"]
 
 
 def check_twitter():
