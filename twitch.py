@@ -21,7 +21,7 @@ def authenticate():
         'client_secret': client_secret,
         'grant_type': 'client_credentials'
     }
-    res = requests.get("https://id.twitch.tv/oauth2/token", params=params)
+    res = requests.post("https://id.twitch.tv/oauth2/token", params=params)
 
     if res.status_code == 200:
         result = res.json()
@@ -46,7 +46,7 @@ def check_twitch_start():
             'Accept': 'application/vnd.twitchtv.v5+json',
             'Authorization': 'Bearer ' + str(access_token)
         }
-        res = requests.post("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
+        res = requests.get("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
 
         if res.status_code == 200:
             result = res.json()
