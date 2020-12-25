@@ -91,7 +91,6 @@ def send_tweet_bbs(cnt_list, nm_list, cmt_list, cnt_max_rog):
                         cnt_del_str = len(str_tweet) - 140
                         str_tweet = str_tpl.format(cnt, nm_list[i], cmt_list[i][:-cnt_del_str], url)
                     send_tweet(str_tweet)
-                    sleep(60)
             i += 1
 
     except Exception as e:
@@ -111,4 +110,4 @@ def check_bbs():
             pass
 
         finally:
-            sleep(30)
+            sleep(300)
