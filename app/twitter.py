@@ -15,33 +15,33 @@ AT = os.environ["ACCESS_TOKEN"]
 ATS = os.environ["ACCESS_TOKEN_SECRET"]
 # Twitter検索の設定
 keyword = os.environ["TWITTER_SEARCH_EXCLUSION"]
-from_user = os.environ["TWITTER_SEARCH_FROM_USER"]
+from_user_list = os.environ["TWITTER_SEARCH_FROM_USER"].split(',')
 # ツイートのテンプレート
-strTmp = os.environ["TWITTER_TPL_INFO"]
+str_tmp = os.environ["TWEET_TPL_TWITTER"]
 
 
 def check_twitter():
     while True:
         # 本日の日付を取得
         today = (datetime.date.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-        
-        # ツイート検索
-        url = "https://api.twitter.com/1.1/search/tweets.json"
-        if keyword is None:
-            query = "from:" + from_user + " since:" + today
-        else:
-            query = "-" + keyword + " from:" + from_user + " since:" + today
-        params = {'q': query, 'count': 10}
-        # 認証処理
-        twitter = OAuth1Session(CK, CS, AT, ATS)
-        # post送信
-        res = twitter.get(url, params=params)
 
-        if res.status_code == 200:  # 正常に検索できた場合
-            results = json.loads(res.text)
-            for tweet in results['statuses']:
-                str_tweet = strTmp.format(text=tweet['text'])
-                send_tweet(str_tweet)
-                sleep(360)
-                
+        for from_user in from_user_list:
+            # ツイート検索
+            url = "https://api.twitter.com/1.1/search/tweets.json"
+            if keyword is None:
+                query = "from:" + from_user + " since:" + today
+            else:
+                query = "-" + keyword + " from:" + from_user + " since:" + today
+            params = {'q': query, 'count': 10}
+            twitter = OAuth1Session(CK, CS, AT, ATS)
+            res = twitter.get(url, params=params)
+
+            if res.status_code == 200:  # 正常に検索できた場合
+                results = json.loads(res.text)
+                for tweet in results['statuses']:
+                    # ツイート送信
+                    str_tweet = str_tmp.format(text=tweet['text'])
+                    send_tweet(str_tweet)
+                    sleep(360)
+
         sleep(60)
