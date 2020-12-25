@@ -3,6 +3,7 @@
 
 import datetime
 import json
+import logging
 import os
 from requests_oauthlib import OAuth1Session
 from time import sleep
@@ -18,6 +19,8 @@ keyword = os.environ["TWITTER_SEARCH_EXCLUSION"]
 from_user_list = os.environ["TWITTER_SEARCH_FROM_USER"].split(',')
 # ツイートのテンプレート
 str_tmp = os.environ["TWEET_TPL_TWITTER"]
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)s : %(asctime)s : %(message)s')
 
 
 def check_twitter():
@@ -40,6 +43,8 @@ def check_twitter():
                 results = json.loads(res.text)
                 for tweet in results['statuses']:
                     # ツイート送信
+                    logging.debug(tweet)
+                    logging.info(tweet)
                     str_tweet = str_tmp.format(text=tweet['text'])
                     send_tweet(str_tweet)
                     sleep(360)
