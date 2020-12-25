@@ -79,7 +79,7 @@ def update_count(cnt_list):
     return max_cnt_org
 
 
-def tweet(cnt_list, nm_list, cmt_list, cnt_max_rog):
+def send_tweet(cnt_list, nm_list, cmt_list, cnt_max_rog):
     try:
         i = 0
         for cnt in cnt_list:
@@ -106,7 +106,7 @@ def check_bbs():
         try:
             count_list, name_list, comment_list = check_bbs_count()
             count_max_org = update_count(count_list)
-            tweet(count_list, name_list, comment_list, count_max_org)
+            send_tweet(count_list, name_list, comment_list, count_max_org)
 
         except Exception as e:
             logging.error(e)
