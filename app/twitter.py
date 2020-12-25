@@ -23,16 +23,17 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s : %(asctime)s : %(
 
 def check_twitter():
     while True:
-        # 本日の日付を取得
-        today = (datetime.date.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+        # 5分前の日時
+        since_datetime = (datetime.datetime.now() - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d_%H:%M')
+        since_datetime += ':00_UTC'
 
         for from_user in from_user_list:
             # ツイート検索
             url = "https://api.twitter.com/1.1/search/tweets.json"
             if keyword is None:
-                query = "from:" + from_user + " since:" + today
+                query = "from:" + from_user + " since:" + since_datetime
             else:
-                query = "-" + keyword + " from:" + from_user + " since:" + today
+                query = "-" + keyword + " from:" + from_user + " since:" + since_datetime
             params = {'q': query, 'count': 10}
             twitter = OAuth1Session(CK, CS, AT, ATS)
             res = twitter.get(url, params=params)
@@ -43,6 +44,5 @@ def check_twitter():
                     # ツイート送信
                     str_tweet = status['text']
                     send_tweet(str_tweet)
-                    sleep(360)
 
-        sleep(60)
+        sleep(300)
