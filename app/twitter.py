@@ -24,10 +24,10 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s : %(asctime)s : %(
 def check_twitter():
     while True:
         # 5分前の日時
-        since_datetime = (datetime.date.today() - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d_%H:%M')
+        since_datetime = (datetime.datetime.now() - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d_%H:%M')
         since_datetime += ':00_UTC'
         logging.info(since_datetime)
-        logging.info(datetime.date.today().strftime('%Y-%m-%d_%H:%M'))
+        logging.info(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M'))
 
         for from_user in from_user_list:
             # ツイート検索
