@@ -65,16 +65,14 @@ def check_bbs_count():
 
 
 def update_count(cnt_list):
-    with open("count_bbs", mode='r') as file:
-        max_cnt_org = file.read()
+    max_cnt_org = os.environ["5CH_COUNT"]
 
     max_cnt = 0
     for cnt in cnt_list:
         if max_cnt < int(cnt):
             max_cnt = int(cnt)
 
-    with open("count_bbs", mode='w') as file:
-        file.write(str(max_cnt))
+    os.environ["5CH_COUNT"] = str(max_cnt)
 
     return max_cnt_org
 
