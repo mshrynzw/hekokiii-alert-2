@@ -87,8 +87,8 @@ def send_tweet_bbs(cnt_list, nm_list, cmt_list, cnt_max_rog):
                 if not "http" in cmt_list[i] and (
                         len(cmt_list[i]) > str_count_boundary_value or int(cnt) % count_multiple == 0):
                     str_tweet = str_tpl.format(cnt, nm_list[i], cmt_list[i], url)
-                    if len(str_tweet) > 140:
-                        cnt_del_str = len(str_tweet) - 140
+                    if len(str_tweet) > 270:
+                        cnt_del_str = len(str_tweet) - 270
                         str_tweet = str_tpl.format(cnt, nm_list[i], cmt_list[i][:-cnt_del_str], url)
                     send_tweet(str_tweet)
             i += 1
