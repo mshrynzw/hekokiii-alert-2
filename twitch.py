@@ -54,7 +54,7 @@ def check_twitch_start():
             data = result['data']
             if len(data) == 0:
                 logging.info("There are not Twitch channel info.")
-                sleep(60)
+                sleep(30)
             else:
                 title = data[0]['title']
                 send_tweet(TWEET_TPL.format(title))
