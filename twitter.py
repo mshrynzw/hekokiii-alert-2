@@ -19,7 +19,7 @@ def get_trend(twitter):
 
     if res.status_code == 200:
         result = res.json()
-        trends = result['0']['trends']
+        trends = result[0]['trends']
         for trend in trends:
             logging.info(trend)
     else:

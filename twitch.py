@@ -53,7 +53,7 @@ def check_twitch_start():
             result = res.json()
             data = result['data']
             if len(data) == 0:
-                send_tweet(TWEET_TPL)
+                send_tweet(TWEET_TPL)   # TODO
                 logging.info("There are not Twitch channel info.")
                 sleep(60)
             else:
