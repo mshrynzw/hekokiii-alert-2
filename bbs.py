@@ -83,7 +83,7 @@ def tweet(cnt_list, nm_list, cmt_list, cnt_max_rog):
     try:
         i = 0
         for cnt in cnt_list:
-            if int(cnt) > cnt_max_rog:
+            if int(cnt) > int(cnt_max_rog):
 
                 # Tweet
                 if not "http" in cmt_list[i] and (
@@ -106,7 +106,7 @@ def check_bbs():
         try:
             count_list, name_list, comment_list = check_bbs_count()
             count_max_org = update_count(count_list)
-            tweet(count_list, name_list, comment_list, int(count_max_org))
+            tweet(count_list, name_list, comment_list, count_max_org)
 
         except Exception as e:
             logging.error(e)
