@@ -27,6 +27,7 @@ def check_twitter():
         since_datetime = (datetime.date.today() - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d_%H:%M')
         since_datetime += ':00_UTC'
         logging.info(since_datetime)
+        logging.info(datetime.date.today().strftime('%Y-%m-%d_%H:%M'))
 
         for from_user in from_user_list:
             # ツイート検索
