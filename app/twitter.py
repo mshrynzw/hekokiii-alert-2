@@ -26,8 +26,6 @@ def check_twitter():
         # 5分前の日時
         since_datetime = (datetime.datetime.now() - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d_%H:%M')
         since_datetime += ':00_UTC'
-        logging.info(since_datetime)
-        logging.info(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M'))
 
         for from_user in from_user_list:
             # ツイート検索
