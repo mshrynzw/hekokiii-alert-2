@@ -17,8 +17,6 @@ ATS = os.environ["ACCESS_TOKEN_SECRET"]
 # Twitter検索の設定
 keyword = os.environ["TWITTER_SEARCH_EXCLUSION"]
 from_user_list = os.environ["TWITTER_SEARCH_FROM_USER"].split(',')
-# ツイートのテンプレート
-str_tmp = os.environ["TWEET_TPL_TWITTER"]
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s : %(asctime)s : %(message)s')
 
@@ -43,7 +41,7 @@ def check_twitter():
                 results = json.loads(res.text)
                 for status in results['statuses']:
                     # ツイート送信
-                    str_tweet = str_tmp.format('@' + from_user, status['text'])
+                    str_tweet = status['text']
                     send_tweet(str_tweet)
                     sleep(360)
 
