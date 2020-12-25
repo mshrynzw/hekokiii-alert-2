@@ -38,7 +38,7 @@ def send_tweet(str_tweet):
     hash_tags = get_trend(twitter)
 
     for hash_tag in hash_tags:
-        if len(str_tweet) + len(hash_tag) + 1 < 270:
+        if len(str_tweet) + len(hash_tag) + 1 < 140:
             str_tweet += " "
             str_tweet += hash_tag
         else:
