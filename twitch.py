@@ -16,8 +16,8 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s : %(asctime)s : %(
 
 def authenticate():
     params = {
-        'client_id': 'value1',
-        'client_secret': 'value2',
+        'client_id': client_id,
+        'client_secret': client_secret,
         'grant_type': 'client_credentials'
     }
     res = requests.get("https://id.twitch.tv/oauth2/token", params=params)
