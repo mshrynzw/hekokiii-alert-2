@@ -73,6 +73,7 @@ def update_count(cnt_list):
         if max_cnt < int(cnt):
             max_cnt = int(cnt)
 
+    logging.error(str(max_cnt))
     with open("count_bbs", mode='w') as file:
         logging.info(str(max_cnt))
         file.write(str(max_cnt))
