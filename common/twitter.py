@@ -3,6 +3,7 @@
 
 import logging
 import os
+from common.length import get_east_asian_width_count
 from requests_oauthlib import OAuth1Session
 
 CK = os.environ["CONSUMER_KEY"]
@@ -38,7 +39,7 @@ def send_tweet(str_tweet):
     hash_tags = get_trend(twitter)
 
     for hash_tag in hash_tags:
-        if len(str_tweet) + len(hash_tag) + 1 < 230:
+        if get_east_asian_width_count(str_tweet) + get_east_asian_width_count(hash_tag) + 1 < 280:
             str_tweet += " "
             str_tweet += hash_tag
         else:

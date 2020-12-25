@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from time import sleep
 from common.twitter import send_tweet
+from common.length import get_east_asian_width_count
 
 # 5chのURL
 url = os.environ["5CH_URL"]
@@ -87,8 +88,8 @@ def send_tweet_bbs(cnt_list, nm_list, cmt_list, cnt_max_rog):
                 if not "http" in cmt_list[i] and (
                         len(cmt_list[i]) > str_count_boundary_value or int(cnt) % count_multiple == 0):
                     str_tweet = str_tpl.format(cnt, nm_list[i], cmt_list[i], url)
-                    if len(str_tweet) > 230:
-                        cnt_del_str = len(str_tweet) - 230
+                    if get_east_asian_width_count(str_tweet) > 280:
+                        cnt_del_str = get_east_asian_width_count(str_tweet) - 280
                         str_tweet = str_tpl.format(cnt, nm_list[i], cmt_list[i][:-cnt_del_str], url)
                     send_tweet(str_tweet)
             i += 1
