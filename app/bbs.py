@@ -6,7 +6,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from time import sleep
-from twitter import send_tweet
+from common.twitter import send_tweet
 
 # 5chのURL
 url = os.environ["5CH_URL"]

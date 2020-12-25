@@ -3,8 +3,8 @@
 
 import os
 import threading
-from twitch import check_twitch_start
-from bbs import check_bbs
+from app.twitch import check_twitch_start
+from app.bbs import check_bbs
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import logging
 import os
 import requests
 from time import sleep
-from twitter import send_tweet
+from common.twitter import send_tweet
 
 client_id = os.environ["TWITCH_CLIENT_ID"]
 client_secret = os.environ["TWITCH_CLIENT_SECRET"]
