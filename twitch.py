@@ -25,7 +25,7 @@ def authenticate():
 
     if res.status_code == 200:
         result = res.json()
-        access_token = result['access_token']
+        access_token = str(result['access_token'])
         logging.info("Got Twitch API access token.")
         return access_token
     else:
@@ -44,18 +44,18 @@ def check_twitch_start():
         headers = {
             'Client-ID': client_id,
             'Accept': 'application/vnd.twitchtv.v5+json',
-            'Authorization': 'Bearer ' + str(access_token)
+            'Authorization': 'Bearer ' + access_token
         }
         res = requests.get("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
 
         if res.status_code == 200:
             result = res.json()
-            data = result['data']
-            title = result['data']['title']
+            data = result['data'][0]
             if len(data) == 0:
                 logging.info("There are not Twitch channel info.")
             else:
-                send_tweet(TWEET_TPL)
+                title = data['title']
+                send_tweet(TWEET_TPL + title)
         else:
             logging.error("Could not get Twitch channel info. (STATUS_CODE: {})".format(str(res.status_code)))
 
