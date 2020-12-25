@@ -43,8 +43,8 @@ def check_twitter():
                 results = json.loads(res.text)
                 for tweet in results['statuses']:
                     # ツイート送信
-                    logging.debug(tweet)
                     logging.info(tweet)
+                    logging.info(len(tweet))
                     str_tweet = str_tmp.format(text=tweet['text'])
                     send_tweet(str_tweet)
                     sleep(360)
