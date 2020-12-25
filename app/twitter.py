@@ -41,11 +41,9 @@ def check_twitter():
 
             if res.status_code == 200:  # 正常に検索できた場合
                 results = json.loads(res.text)
-                for tweet in results['statuses']:
+                for status in results['statuses']:
                     # ツイート送信
-                    logging.info(tweet)
-                    logging.info(len(tweet))
-                    str_tweet = str_tmp.format(text=tweet['text'])
+                    str_tweet = str_tmp.format(status['text'])
                     send_tweet(str_tweet)
                     sleep(360)
 
