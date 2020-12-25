@@ -45,7 +45,7 @@ def check_twitch_start():
             'Accept': 'application/vnd.twitchtv.v5+json',
             'Authorization': 'Bearer ' + str(access_token)
         }
-        res = requests.get("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
+        res = requests.post("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
 
         if res.status_code == 200:
             result = res.json()
