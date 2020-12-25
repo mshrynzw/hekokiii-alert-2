@@ -74,7 +74,8 @@ def update_count(cnt_list):
             max_cnt = int(cnt)
 
     with open("count_bbs", mode='w') as file:
-        file.write(str(max_cnt))
+        file.write("test")
+        # file.write(str(max_cnt))
 
     return max_cnt_org
 
