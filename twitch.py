@@ -55,7 +55,7 @@ def check_twitch_start():
                 logging.info("There are not Twitch channel info.")
             else:
                 title = data['title']
-                send_tweet(TWEET_TPL + title)
+                send_tweet(TWEET_TPL.format(title))
         else:
             logging.error("Could not get Twitch channel info. (STATUS_CODE: {})".format(str(res.status_code)))
 
