@@ -4,6 +4,7 @@
 import logging
 import os
 import requests
+from time import sleep
 from twitter import send_tweet
 
 client_id = os.environ["TWITCH_CLIENT_ID"]
@@ -57,3 +58,5 @@ def check_twitch_start():
                 send_tweet(TWEET_TPL)
         else:
             logging.error("Could not get Twitch channel info. (STATUS_CODE: {})".format(str(res.status_code)))
+
+        sleep(60)
