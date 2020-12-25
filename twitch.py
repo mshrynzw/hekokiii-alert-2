@@ -38,13 +38,12 @@ def check_twitch_start():
     while True:
 
         params = {
-            'query': search_query,
-            'live_only': 'true'
+            'query': search_query
         }
         headers = {
             'Client-ID': client_id,
             'Accept': 'application/vnd.twitchtv.v5+json',
-            'Authorization': 'Bearer ' + access_token
+            'Authorization': 'Bearer ' + str(access_token)
         }
         res = requests.get("https://api.twitch.tv/helix/search/channels", params=params, headers=headers)
 
